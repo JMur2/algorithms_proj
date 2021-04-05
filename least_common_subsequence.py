@@ -4,7 +4,8 @@ from openpyxl import load_workbook
 class Project:
 
     def __init__(self):
-        pass
+        self.pre_move_df = None
+        self.post_move_df = None
 
     def read_data(self):
         wb = load_workbook(filename='data.xlsx', read_only=True)
@@ -17,7 +18,7 @@ class Project:
                 data_cols.append(cell.value)
             data_rows.append(data_cols)
         
-        pre_move_df = pd.DataFrame(data_rows)
+        self.pre_move_df = pd.DataFrame(data_rows)
 
         data_rows = []
         for row in ws['K4':'Q63']:
