@@ -1,12 +1,12 @@
-
-
 class Player:
 
     def __init__(self, age, pos, trb, ast, stl, blk, pts):
-        self.age = age
-        self.pos = pos
-        self.trb = trb
-        self.ast = ast
-        self.stl = stl
-        self.blk = blk
-        self.pts = pts
+        self.player_id
+        self.pre_stats = []
+        self.post_stats = []
+    
+    def get_pre_move_stats(self):
+        return self.pre_stats
+    
+    def get_post_move_stats(self):
+        return self.post_stats
