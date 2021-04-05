@@ -5,6 +5,10 @@ class Project:
     def __init__(self):
         pass
 
+    def read_data(self):
+        df = pd.read_excel(r'data.xlsx', sheet_name='Sheet2')
+        print(df)
+
     def least_common_subsequence(self, X, Y):
         """
         This algorithm checks for the longest common subsequence between 2 arrays
@@ -56,3 +60,4 @@ class Project:
 if __name__ == "__main__":
     
     project = Project()
+    project.read_data()
