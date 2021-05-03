@@ -12,6 +12,7 @@ class Project:
         self.players = None
 
     def read_data(self):
+        # makes use of the openpyxl library to read in data from excel
         wb = load_workbook(filename='data.xlsx', read_only=True)
         ws = wb['Sheet1']
 
@@ -36,7 +37,10 @@ class Project:
         self.post_move_df = pd.DataFrame(data_rows)
         
     def set_all_player_stats(self):
-
+        """
+        This function looks at the set of players found in the excel document, and creates a player object for each unique player.
+        The player object stores a player id (their number in the list), as well as the players 2 sets of stats
+        """
         for i in range(self.pre_move_df.values):
             p = Player(i)
 
@@ -47,9 +51,8 @@ class Project:
 
     def lcs(self, X, Y, m, n):
         """
-        This algorithm checks for the longest common subsequence between 2 arrays
-        and includes a modification that places a higher weights on what will be
-        a "good stat" on a player
+        This algorithm checks for the longest common subsequence between 2 arrays and includes a modification that places a higher 
+        weights on what will be a "good stat" on a player
 
         Solved with recursion
 
@@ -57,7 +60,6 @@ class Project:
         X: array of values
         Y: array of values
         """
-    
         if m == 0 or n == 0:
             return 0
         elif X[m-1] == Y[n-1]:
@@ -71,12 +73,5 @@ class Project:
             return max(self.lcs(X, Y, m, n-1), self.lcs(X, Y, m-1, n))
 
 if __name__ == "__main__":
-    # used for testing data outputs and LCS outputs - will be more robust as more is added
     project = Project()
     project.read_data()
-
-    # x = [1, 0, 1, 1, 0, 1]
-    # z = [0, 0, -1, 1, 1, 1]
-
-    # print(project.lcs(x, z, len(x), len(z)))
-    print(len(project.pre_move_df.values))
