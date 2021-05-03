@@ -1,5 +1,7 @@
 import pandas as pd
+
 from openpyxl import load_workbook 
+from Player import Player
 
 class Project:
 
@@ -7,6 +9,7 @@ class Project:
         # data frames for storing player data
         self.pre_move_df = None
         self.post_move_df = None
+        self.players = None
 
     def read_data(self):
         wb = load_workbook(filename='data.xlsx', read_only=True)
@@ -32,33 +35,15 @@ class Project:
         
         self.post_move_df = pd.DataFrame(data_rows)
         
+    def set_all_player_stats(self):
 
-    def least_common_subsequence(self, X, Y):
-        """
-        This algorithm checks for the longest common subsequence between 2 arrays
+        for i in range(self.pre_move_df.values):
+            p = Player(i)
 
-        Solved without using recursion
+            p.set_pre_move_stats(self.pre_move_df.values[i])
+            p.set_post_move_stats(self.post_move_df.values[i])
 
-        Parameters:
-        X: array of values
-        Y: array of values
-        """
-
-        len_x = len(X)
-        len_y = len(Y)
-
-        L = [[None]*(len_y + 1) for i in range(len_x + 1)]
-
-        for i in range(len_x+1):
-            for j in range(len_y+1):
-                if i == 0 or j == 0:
-                    L[i][j] = 0
-                elif X[i-1] == Y[j-1]:
-                    L[i][j] = L[i-1][j+1] + 1
-                else:
-                    L[i][j] = max(L[i-1][j], L[i][j-1])
-        
-        return L[len_x][len_y]
+            self.players.append(p)
 
     def lcs(self, X, Y, m, n):
         """
@@ -88,9 +73,10 @@ class Project:
 if __name__ == "__main__":
     # used for testing data outputs and LCS outputs - will be more robust as more is added
     project = Project()
-    #project.read_data()
+    project.read_data()
 
-    x = [1, 0, 1, 1, 0, 1]
-    z = [0, 0, -1, 1, 1, 1]
+    # x = [1, 0, 1, 1, 0, 1]
+    # z = [0, 0, -1, 1, 1, 1]
 
-    print(project.lcs(x, z, len(x), len(z)))
+    # print(project.lcs(x, z, len(x), len(z)))
+    print(len(project.pre_move_df.values))

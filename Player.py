@@ -4,11 +4,15 @@ class Player:
     This class will also handle the conversion of stats from their float values to the
     categories (Good, Neutral, and Bad)
     """
-    def __init__(self, age, pos, trb, ast, stl, blk, pts):
-        self.player_id
-        self.pre_stats = []
-        self.post_stats = []
+    def __init__(self, id):
+        self.player_id = id
     
+    def set_pre_move_stats(self, stats):
+        self.pre_stats = stats
+
+    def set_post_move_stats(self, stats):
+        self.post_stats = stats
+
     def get_pre_move_stats(self):
         return self.pre_stats
     
