@@ -80,12 +80,13 @@ class Project:
             self.players.append(p)
 
     def create_baseline(self, id):
-        for p in self.players:
+        # for p in self.players:
+        for x in range(60):
+            p = self.players[x]
 
             if id == 0:
                 arr = p.pre_stats
                 weights = self.pre_weights
-                print(weights)
             elif id == 1:
                 arr = p.post_stats
                 weights = self.post_weights
@@ -93,6 +94,7 @@ class Project:
             age = arr[0]
             pos = arr[1]
             
+            print(p.player_id)
             holder = []
             if age <= 24:
                 for i in range(5):
@@ -133,6 +135,10 @@ class Project:
             elif id == 1:
                 p.set_post_stat_scores(score[0])
             
+            if p.player_id == 59:
+                print('should break')
+                return
+            
     def lcs(self, X, Y, m, n):
         """
         This algorithm checks for the longest common subsequence between 2 arrays and includes a modification that places a higher 
@@ -152,10 +158,6 @@ class Project:
             return max(self.lcs(X, Y, m, n-1), self.lcs(X, Y, m-1, n))
 
 if __name__ == "__main__":
-
-    for i in range(5):
-        print(i)
-
     project = Project()
 
     project.read_data()
