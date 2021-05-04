@@ -85,6 +85,7 @@ class Project:
             if id == 0:
                 arr = p.pre_stats
                 weights = self.pre_weights
+                print(weights)
             elif id == 1:
                 arr = p.post_stats
                 weights = self.post_weights
@@ -119,7 +120,6 @@ class Project:
                 for i in range(5):
                     holder[i] = holder[i] * weights[4][i]
             
-            #print(holder)
             score = []
             for i in range(5):
                 if holder[i] <= arr[i+2]:
@@ -128,7 +128,10 @@ class Project:
                     score.append(0)
             
             score = pd.DataFrame(score)
-            p.set_stat_scores(score[0])
+            if id == 0:
+                p.set_pre_stat_scores(score[0])
+            elif id == 1:
+                p.set_post_stat_scores(score[0])
             
     def lcs(self, X, Y, m, n):
         """
@@ -149,6 +152,10 @@ class Project:
             return max(self.lcs(X, Y, m, n-1), self.lcs(X, Y, m-1, n))
 
 if __name__ == "__main__":
+
+    for i in range(5):
+        print(i)
+
     project = Project()
 
     project.read_data()
@@ -161,6 +168,11 @@ if __name__ == "__main__":
     # print(project.baseline)
     # print(project.baseline[2][0])
 
-    project.create_baseline()
+    project.create_baseline(0)
+    project.create_baseline(1)
 
-    print(project.players[0].get_stat_scores())
+    lcs_score = []
+    for p in project.players:
+        lcs_score.append(project.lcs(p.pre_scores, p.post_scores, 5, 5))
+
+    print(lcs_score)

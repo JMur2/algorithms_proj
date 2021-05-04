@@ -11,7 +11,8 @@ class Player:
         # arrays for player stats and stat scores
         self.pre_stats = []
         self.post_stats = []
-        self.scores = []
+        self.pre_scores = []
+        self.post_scores = []
 
 
     """
@@ -34,8 +35,14 @@ class Player:
         return self.post_stats
 
     """"""
-    def set_stat_scores(self, scores):
-        self.scores = scores
+    def set_pre_stat_scores(self, scores):
+        self.pre_scores = scores
     
-    def get_stat_scores(self):
-        return self.scores
+    def get_pre_stat_scores(self):
+        return self.pre_scores
+    
+    def set_post_stat_scores(self, scores):
+        self.post_scores = scores
+    
+    def get_post_stat_scores(self):
+        return self.post_scores
