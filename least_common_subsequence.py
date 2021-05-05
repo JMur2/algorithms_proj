@@ -94,7 +94,6 @@ class Project:
             age = arr[0]
             pos = arr[1]
             
-            print(p.player_id)
             holder = []
             if age <= 24:
                 for i in range(5):
@@ -134,11 +133,7 @@ class Project:
                 p.set_pre_stat_scores(score[0])
             elif id == 1:
                 p.set_post_stat_scores(score[0])
-            
-            if p.player_id == 59:
-                print('should break')
-                return
-            
+
     def lcs(self, X, Y, m, n):
         """
         This algorithm checks for the longest common subsequence between 2 arrays and includes a modification that places a higher 
@@ -164,17 +159,8 @@ if __name__ == "__main__":
 
     project.set_all_player_stats()
 
-    # print(project.weights)
-    # print(project.weights[6][1])
-
-    # print(project.baseline)
-    # print(project.baseline[2][0])
-
     project.create_baseline(0)
     project.create_baseline(1)
 
-    lcs_score = []
     for p in project.players:
-        lcs_score.append(project.lcs(p.pre_scores, p.post_scores, 5, 5))
-
-    print(lcs_score)
+        p.set_lcs = project.lcs(p.pre_scores, p.post_scores, 5, 5)

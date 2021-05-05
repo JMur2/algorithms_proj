@@ -14,6 +14,8 @@ class Player:
         self.pre_scores = []
         self.post_scores = []
 
+        self.lcs = 0
+
 
     """
     Below are 9 helper functions that return a value to the parent class, or will set a value within the current player
@@ -46,3 +48,9 @@ class Player:
     
     def get_post_stat_scores(self):
         return self.post_scores
+
+    def set_lcs(self, score):
+        self.lcs = score
+
+    def get_lcs(self):
+        return self.lcs
