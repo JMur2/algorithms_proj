@@ -80,7 +80,13 @@ class Project:
             self.players.append(p)
 
     def create_baseline(self, id):
-        # for p in self.players:
+        """
+        This function looks at player's array of data, and applies a series of weights to it in order to normalize the data.
+
+        Parameters:
+
+        id: integer value that determines which set of data to look at: pre-move or post-move
+        """
         for x in range(60):
             p = self.players[x]
 
