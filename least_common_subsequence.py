@@ -163,4 +163,5 @@ if __name__ == "__main__":
     project.create_baseline(1)
 
     for p in project.players:
-        p.set_lcs = project.lcs(p.pre_scores, p.post_scores, 5, 5)
+        p.lcs = project.lcs(p.pre_scores, p.post_scores, 5, 5)
+        print(p.lcs)
